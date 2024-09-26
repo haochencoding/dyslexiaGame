@@ -18,6 +18,16 @@ const questions = [
     reseNonSelect: "Oops, you did not select an option! Now Harry and Ron are both unconscious.",
     resCorrect: "Congratulations! Harry and Ron are saved.",
     resWrong: "Oops! You made a mistake! Now Harry and Ron are both unconscious."
+  },
+
+  {
+    level: 2,
+    pageId: "level-2",
+    formId: "level-2-quiz-form",
+    answerValue: "B",
+    reseNonSelect: "Oops, you did not select an option! Now Anna and Kristoff are completely frozen.",
+    resCorrect: "Congratulations! Anna and Kristoff are saved.",
+    resWrong: "Oops! You made a mistake! Now Anna and Kristoff are completely frozen."
   }
 ]
 
