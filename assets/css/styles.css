@@ -69,6 +69,10 @@ div.quizz-page {
 	margin-top: 2rem;
 }
 
+div.quizz-page h2.quiz-heading {
+	margin-top: 4rem;
+}
+
 div.page-text-container{
   padding: 0.5rem 1rem;
   border-radius: 1rem;
