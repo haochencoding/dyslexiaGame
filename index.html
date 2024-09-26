@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dyslexia Experience</title>
+  <link rel="stylesheet" href="assets/css/load_page.css">
+  <link rel="stylesheet" href="assets/css/timeBar.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&display=swap" rel="stylesheet">
+</head>
+<body class="dotted-background">
+  <div class="time-bar-container invisible">
+    <div class="time-bar" id="timeBar"></div>
+    <div class="time-bar time-bar-background"></div>
+    <div class="time-bar-text-container" id="timeBarText">
+      <span>TIME</span>
+      <span id="timeBarSeconds">60</span>
+    </div>
+  </div>
+  <div id="load-page">
+    <h1 class="title">Read with Dyslexia</h1>
+    <div class="rainbow-marker-loader"></div>
+    <button id="game-start-btn">Let's Start!</button>
+  </div>
+  <div id="intro-page" class="page invisible">
+    <div>
+      <h1>Learn to Read with Dyslexia</h1>
+      <div class="page-text-container">
+        <p>Hello, this is a game for you to understand the lived experience of dyslexic persons.</p>
+        <p>Please imagine that you are a young dyslexic student. Now, your teacher gives you reading tasks for you to learn reading!</p>
+        <p>You have two minute for each task!</p>
+      </div>
+      <button class="next-btn">Level 1</button>
+    </div>
+  </div>
+  <div id="level-up-page" class="invisible" >
+    <div class="book">
+      <div class="book__pg-shadow"></div>
+      <div class="book__pg"></div>
+      <div class="book__pg book__pg--2"></div>
+      <div class="book__pg book__pg--3"></div>
+      <div class="book__pg book__pg--4"></div>
+      <div class="book__pg book__pg--5"></div>
+    </div>
+    <br>
+    <h1 id="level-up-page-text">Get Ready!</h1>
+    <h1 id="level-up-page-level">Level 0</h1>
+  </div>
+  <div id="level-1" class="page quiz-page invisible">
+    <h2 class="quiz-heading">Task 1: Hermione, Let's Save Harry</h2>
+    <div class="page-text-container">
+      <div class="quiz-container">
+        <div class="level-1 quiz-text">
+          <p>Harry, Ron, and Hermione were exploring the mysterious alchemist lab at Hogwarts College when disaster struck. Harry and Ron triggered two different traps hidden in the room. Ron clutched his arm in pain, while Harry had already fainted.</p>
+          <p>Panicked, Hermione noticed an old, dusty book on the shelf. It described a special lotion that could counteract the poisons from ancient traps. Flipping through the pages, Hermione quickly found the recipe. Luckily, the ingredients were all in the lab!</p>
+          <p>The book said she needed dragon’s blood, phoenix feather dust, and unicorn horn powder. Without wasting a second, Hermione began searching the shelves. Time was running out for Harry and Ron.</p>
+        </div>
+        <div class="level-1 quiz-questions">
+          <h3>What are the three ingredients Hermione needs to make the lotion?</h3>
+          <form id="level-1-quiz-form">
+            <input type="radio" id="level1-optionA" name="option" value="A">
+            <label for="optionC">A. Unicorn horn powder, basilisk venom, phoenix tears</label><br>
+          
+            <input type="radio" id="level1-optionB" name="option" value="B">
+            <label for="optionB">B. Dragon scales, phoenix feather dust, unicorn hair</label><br>
+          
+            <input type="radio" id="level1-optionC" name="option" value="C">
+            <label for="optionA">C. Dragon’s blood, phoenix feather dust, unicorn horn powder</label><br>
+          
+            <input type="radio" id="level1-optionD" name="option" value="D">
+            <label for="optionD">D. Phoenix tears, dragon scales, unicorn horn powder</label><br>
+          
+            <input type="submit" value="Check Answer" class="invisible">
+            <!-- <button id="level-1-quiz-check-btn">Check</button> -->
+          </form>
+        </div>
+      </div>
+      <div class="result-message"></div>
+      <div class="quiz-explanation-container invisible">
+        <div class="quiz-explanation">
+          <p><b>Explanation:</b> Some people with dyslexia can read, but the letters seems to "jump around" for them. Hence, it takes them a lot of concentration, </p>
+        </div>
+      </div>
+    </div>
+    <div class="page-btn-container invisible">
+      <button class="next-btn">Next</button>
+      <button id="start">Start</button>
+    </div>
+  </div>
+  
+  
+  <script type="module" src="assets/js/messWord.js"></script>
+  <script type="module" src="assets/js/script.js"></script>
+  <!-- <script type="text/javascript">
+
+  "use strict";
+
+  $(function(){
+
+    var getTextNodesIn = function(el) {
+        return $(el).find(":not(iframe,script)").addBack().contents().filter(function() {
+            return this.nodeType == 3;
+        });
+    };
+
+    // var textNodes = getTextNodesIn($("p, h1, h2, h3"));
+    var textNodes = getTextNodesIn($("*"));
+
+
+
+    function isLetter(char) {
+      return /^[\d]$/.test(char);
+    }
+
+
+    var wordsInTextNodes = [];
+    for (var i = 0; i < textNodes.length; i++) {
+      var node = textNodes[i];
+
+      var words = []
+
+      var re = /\w+/g;
+      var match;
+      while ((match = re.exec(node.nodeValue)) != null) {
+
+        var word = match[0];
+        var position = match.index;
+
+        words.push({
+          length: word.length,
+          position: position
+        });
+      }
+
+      wordsInTextNodes[i] = words;
+    };
+
+
+    function messUpWords () {
+
+      for (var i = 0; i < textNodes.length; i++) {
+
+        var node = textNodes[i];
+
+        for (var j = 0; j < wordsInTextNodes[i].length; j++) {
+
+          // Only change a tenth of the words each round.
+          if (Math.random() > 1/10) {
+
+            continue;
+          }
+
+          var wordMeta = wordsInTextNodes[i][j];
+
+          var word = node.nodeValue.slice(wordMeta.position, wordMeta.position + wordMeta.length);
+          var before = node.nodeValue.slice(0, wordMeta.position);
+          var after  = node.nodeValue.slice(wordMeta.position + wordMeta.length);
+
+          node.nodeValue = before + messUpWord(word) + after;
+        };
+      };
+    }
+
+    function messUpWord (word) {
+
+      if (word.length < 3) {
+
+        return word;
+      }
+
+      return word[0] + messUpMessyPart(word.slice(1, -1)) + word[word.length - 1];
+    }
+
+    function messUpMessyPart (messyPart) {
+
+      if (messyPart.length < 2) {
+
+        return messyPart;
+      }
+
+      var a, b;
+      while (!(a < b)) {
+
+        a = getRandomInt(0, messyPart.length - 1);
+        b = getRandomInt(0, messyPart.length - 1);
+      }
+
+      return messyPart.slice(0, a) + messyPart[b] + messyPart.slice(a+1, b) + messyPart[a] + messyPart.slice(b+1);
+    }
+
+    // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+    function getRandomInt(min, max) {
+      
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+    
+    // setInterval(messUpWords, 50);
+
+    let isRunning = false;
+    let intervalId = null;
+
+    document.getElementById("start").addEventListener("click", function() {
+      if (!isRunning) {
+        // Start the interval
+        console.log("start");
+        intervalId = setInterval(messUpWords, 25);
+        isRunning = true;
+        document.getElementById("start").innerHTML = "Pause";
+      } else {
+        // Pause the interval
+        console.log("pause");
+        clearInterval(intervalId);
+        isRunning = false;
+        document.getElementById("start").innerHTML = "Start";
+      }
+    });
+
+    
+  });
+
+
+  </script> -->
+</body>
+</html>
