@@ -96,6 +96,10 @@ input[type="submit"] {
 
 }
 
+.page-btn-container {
+	margin-bottom: 3rem;
+}
+
 #intro-page {
   display: flex;
   flex-direction: column;

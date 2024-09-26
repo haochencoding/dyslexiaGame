@@ -4,6 +4,8 @@ const pages = $('div.page');
 const levelUpPage = $('#level-up-page');
 const startMusic = new Audio('assets/audio/unforgettable-moments-161053.mp3');
 const nextLevelAudio = new Audio('assets/audio/cartoon-142268.mp3');
+const successAudio = new Audio('assets/audio/level-passed-142971.mp3');
+const failAudio = new Audio('assets/audio/pipe-117724.mp3');
 // import { showExplanationAndBtn, checkAnswer } from './checkAnswer.js';
 import {messUpWords} from './messWord.js';
 
@@ -13,6 +15,9 @@ const questions = [
     pageId: "level-1",
     formId: "level-1-quiz-form",
     answerValue: "C",
+    reseNonSelect: "Oops, you did not select an option! Now Harry and Ron are both unconscious.",
+    resCorrect: "Congratulations! Harry and Ron are saved.",
+    resWrong: "Oops! You made a mistake! Now Harry and Ron are both unconscious."
   }
 ]
 
@@ -52,7 +57,7 @@ const showExplanationAndBtn = (page_id) => {
   btnContainer.classList.remove("invisible");
 }
 
-const checkAnswer = (event, page_id, form_id, answerValue) => {
+const checkAnswer = (event, page_id, form_id, answerValue, resNonSelect, resCorrect, resWrong) => {
   if (event) {
     event.preventDefault();
   }
@@ -63,15 +68,15 @@ const checkAnswer = (event, page_id, form_id, answerValue) => {
 
   // Check if any option is selected
   if (!selectedOption) {
-      resultMessage.innerHTML = "<p style='color: red;'>Please select an answer!</p>";
+      resultMessage.innerHTML = `<p style='color: red;'>${resNonSelect}</p>`;
+      failAudio.play();
       // return;
-  }
-
-  // Check if the selected answer is correct (the correct answer is "C")
-  if (selectedOption.value === answerValue) {
-    resultMessage.innerHTML = "<p style='color: green;'>Congratulations! You selected the correct answer.</p>";
+  } else if (selectedOption.value === answerValue) {
+    resultMessage.innerHTML = `<p style='color: green;'>${resCorrect}</p>`;
+    successAudio.play();
   } else {
-    resultMessage.innerHTML = "<p style='color: red;'>Oops! That's not correct.";
+    resultMessage.innerHTML = `<p style='color: red;'>${resWrong}</p>`;
+    failAudio.play();
   }
 
   document.querySelector(`#${form_id} input[type="submit"]`).classList.add("invisible");
@@ -100,14 +105,14 @@ const startQuizz = () => {
 
   // Check the answer by click or timeout
   const timeOutCheckAnswer = setTimeout(() => {
-    checkAnswer(null, q.pageId, q.formId, q.answerValue);
+    checkAnswer(null, q.pageId, q.formId, q.answerValue, q.reseNonSelect, q.resCorrect, q.resWrong);
     clearInterval(effectHandle);
   }, 120000);
 
   document.getElementById(q.formId).addEventListener("submit", (event) => {
     event.preventDefault();
     clearTimeout(timeOutCheckAnswer);
-    checkAnswer(event, q.pageId, q.formId, q.answerValue);
+    checkAnswer(event, q.pageId, q.formId, q.answerValue, q.reseNonSelect, q.resCorrect, q.resWrong);
     clearInterval(countDown);
     clearInterval(effectHandle);
   });
